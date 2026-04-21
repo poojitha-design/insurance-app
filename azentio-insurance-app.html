@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Azentio Insurance</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dg:#16303d;--green:#2ed88e;--gl:#e6faf3;--bg:#f3f5f5;
+  --bd:#b9c1c5;--txt:#101828;--sub:#4a5565;--mut:#717182;
+  --dis:#e8eaec;--wh:#fff;--red:#ef4444;--amber:#f59e0b;
+}
+body{font-family:'Poppins',sans-serif;background:#cfd3d5;display:flex;justify-content:center;padding:20px 0 40px;min-height:100vh}
+.phone{width:390px;min-height:844px;background:var(--bg);border-radius:44px;box-shadow:0 32px 80px rgba(0,0,0,.28);overflow:hidden;display:flex;flex-direction:column;position:relative}
+
+/* ── SCREENS ── */
+.scr{display:none;flex-direction:column;flex:1;overflow-y:auto;overflow-x:hidden}
+.scr.on{display:flex}
+.scr::-webkit-scrollbar{width:0}
+
+/* ── STATUS BAR ── */
+.sb{background:var(--dg);display:flex;justify-content:space-between;align-items:center;padding:14px 24px 8px;flex-shrink:0}
+.sb .t{color:#fff;font-size:13px;font-weight:600}
+.sb .ic{display:flex;gap:5px;align-items:center}
+
+/* ── TOP NAV ── */
+.topnav{background:var(--dg);display:flex;align-items:center;justify-content:space-between;padding:8px 20px 14px;flex-shrink:0}
+.logo{display:flex;align-items:center;gap:8px}
+.logob{width:30px;height:30px;background:var(--green);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.logot{color:#fff;font-size:16px;font-weight:700;letter-spacing:-.3px}
+.logot span{color:var(--green)}
+.btn-login{background:var(--green);color:var(--dg);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;border:none;border-radius:999px;padding:7px 18px;cursor:pointer}
+
+/* ── BOTTOM NAV ── */
+.bnav{background:#fff;display:flex;border-top:1px solid var(--dis);flex-shrink:0;padding:8px 0 12px}
+.bni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0}
+.bni svg{width:22px;height:22px;fill:var(--mut)}
+.bni span{font-size:10px;color:var(--mut);font-weight:500}
+.bni.act svg{fill:var(--dg)}
+.bni.act span{color:var(--dg);font-weight:600}
+
+/* ── FLOW HEADER ── */
+.fhdr{background:var(--dg);display:flex;align-items:center;gap:12px;padding:12px 20px 14px;flex-shrink:0}
+.fhdr button{background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.12)}
+.fhdr button svg{fill:#fff;width:18px;height:18px}
+.fhdr h2{color:#fff;font-size:16px;font-weight:600;flex:1}
+
+/* ── PROGRESS STEPS ── */
+.pbar{background:#fff;padding:14px 20px 12px;flex-shrink:0}
+.steps{display:flex;align-items:flex-start}
+.stp{display:flex;flex-direction:column;align-items:center;flex:1;position:relative}
+.stpline{position:absolute;top:15px;left:50%;right:-50%;height:2px;background:var(--dis);z-index:0}
+.stp:last-child .stpline{display:none}
+.stpdot{width:30px;height:30px;border-radius:50%;border:2px solid var(--dis);background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--mut);position:relative;z-index:1;transition:all .3s}
+.stp.act .stpdot{background:var(--green);border-color:var(--green);color:var(--dg);font-weight:700}
+.stp.dn .stpdot{background:var(--green);border-color:var(--green);color:#fff;font-size:13px}
+.stp.dn .stpline,.stp.act .stpline{background:var(--green)}
+.stplbl{font-size:10px;color:var(--sub);margin-top:5px;text-align:center;line-height:1.3}
+.stp.act .stplbl{color:var(--dg);font-weight:600}
+
+/* ── CARDS ── */
+.card{background:#fff;border-radius:20px;margin:10px 14px;padding:22px 18px;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.card-t{font-size:17px;font-weight:700;color:var(--txt);text-align:center;margin-bottom:4px}
+.card-s{font-size:12px;color:var(--sub);font-weight:300;text-align:center;margin-bottom:18px;line-height:1.5}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,#1a3f52,#0d2530);padding:18px 20px 22px;position:relative;overflow:hidden;flex-shrink:0}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80') center/cover;opacity:.15}
+.hero-tag{font-size:10px;font-weight:500;color:var(--green);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px;position:relative}
+.hero-title{font-size:20px;font-weight:800;color:#fff;line-height:1.3;position:relative}
+.hero-title span{color:var(--green)}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:6px;position:relative;line-height:1.5}
+
+/* ── FORMS ── */
+.fgrp{margin-bottom:14px}
+.flbl{font-size:12px;font-weight:500;color:var(--sub);display:block;margin-bottom:5px}
+.irow{display:flex;align-items:center;border:1px solid var(--bd);border-radius:12px;overflow:hidden;background:#fff}
+.iflag{background:#fff;padding:0 10px;height:48px;display:flex;align-items:center;gap:4px;border-right:1px solid var(--bd);flex-shrink:0;font-size:16px}
+.iflag span{font-size:11px;color:var(--sub);font-weight:500}
+.irow input,.irow select{flex:1;border:none;outline:none;font-family:'Poppins',sans-serif;font-size:14px;color:var(--mut);background:#f8f9fa;padding:0 12px;height:48px}
+.isolo{width:100%;border:1px solid var(--bd);border-radius:12px;padding:0 14px;height:48px;font-family:'Poppins',sans-serif;font-size:14px;color:var(--txt);outline:none;background:#fff}
+.isolo:focus{border-color:var(--dg)}
+.ihint{font-size:11px;color:#6a7282;margin-top:4px;line-height:1.4}
+textarea.isolo{height:88px;padding:12px 14px;resize:none}
+
+/* ── BUTTONS ── */
+.bp{width:100%;background:var(--dg);color:#fff;border:none;border-radius:999px;padding:13px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .2s;margin-top:4px}
+.bp:hover{opacity:.9}
+.bp.gr{background:var(--green);color:var(--dg)}
+.bp.out{background:#fff;color:var(--dg);border:1.5px solid var(--dis)}
+.bp.out:hover{border-color:var(--dg)}
+.link-t{text-align:center;font-size:12px;color:var(--dg);text-decoration:underline;cursor:pointer;margin-top:12px;display:block}
+
+/* ── ACTION ROW ── */
+.arow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.abtn{display:flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid var(--bd);border-radius:999px;padding:9px 10px;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:var(--dg);background:#fff;cursor:pointer;transition:border-color .2s}
+.abtn:hover{border-color:var(--dg)}
+
+/* ── PLAN CARDS ── */
+.plan-c{background:#fff;border-radius:20px;border:1.5px solid var(--dis);margin-bottom:10px;cursor:pointer;transition:border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
+.plan-c.sel{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.plan-img{height:110px;background:linear-gradient(135deg,#1a3f52,#2ed88e33);display:flex;align-items:center;justify-content:center}
+.plan-img svg{width:44px;height:44px;opacity:.55}
+.plan-body{padding:12px 14px 14px}
+.plan-hrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.plan-nm{font-size:15px;font-weight:700;color:var(--txt)}
+.plan-pr{font-size:14px;font-weight:700;color:var(--dg)}
+.plan-pr span{font-size:10px;font-weight:400;color:var(--mut)}
+.plan-d{font-size:12px;color:var(--sub);line-height:1.4;margin-bottom:8px}
+.plan-badge{position:absolute;top:8px;left:8px;font-size:9px;font-weight:700;background:var(--green);color:var(--dg);border-radius:999px;padding:2px 8px;z-index:2}
+.radio-c{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;border:2px solid var(--dis);background:#fff;transition:all .2s;z-index:2}
+.plan-c.sel .radio-c{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+.get-q{font-size:13px;font-weight:600;color:var(--green);display:flex;align-items:center;gap:4px}
+
+/* ── ADDON ACCORDION ── */
+.addon-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;font-size:14px;color:var(--txt);border-top:1px solid rgba(0,0,0,.07)}
+.addon-arr{font-size:16px;color:var(--mut);transition:transform .2s}
+.addon-arr.open{transform:rotate(90deg)}
+.addon-bd{padding:0 16px 12px;display:none}
+.addon-bd.open{display:block}
+.addon-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+.addon-row:last-child{margin-bottom:0}
+.addon-row input[type=checkbox]{width:15px;height:15px;flex-shrink:0;margin-top:3px;accent-color:var(--dg)}
+.addon-nm{font-size:13px;color:#364153;font-weight:500}
+.addon-tip{font-size:11px;color:var(--mut);margin-top:1px}
+
+/* ── REVIEW ROWS ── */
+.rsec{margin-bottom:16px}
+.rhd{font-size:10px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.rrow{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--bg)}
+.rrow:last-child{border-bottom:none}
+.rl{font-size:12px;color:var(--sub)}
+.rv{font-size:13px;font-weight:600;color:var(--txt);text-align:right;max-width:60%}
+.div{height:1px;background:var(--bg);margin:12px 0}
+.total-b{background:var(--dg);border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.total-l{font-size:13px;font-weight:500;color:rgba(255,255,255,.7)}
+.total-v{font-size:20px;font-weight:700;color:var(--green)}
+
+/* ── SUCCESS ── */
+.suc-wrap{display:flex;flex-direction:column;align-items:center;padding:36px 20px 24px;text-align:center}
+.suc-icon{width:76px;height:76px;background:var(--gl);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.suc-t{font-size:21px;font-weight:700;color:var(--txt);margin-bottom:8px}
+.suc-s{font-size:13px;color:var(--sub);line-height:1.6;margin-bottom:20px}
+.pol-card{background:var(--dg);border-radius:18px;padding:18px;width:100%;margin-bottom:16px;text-align:left}
+.pol-label{font-size:10px;color:rgba(255,255,255,.55);margin-bottom:3px}
+.pol-num{font-size:17px;font-weight:700;color:var(--green);letter-spacing:1px;margin-bottom:14px}
+.pol-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pol-itl{font-size:10px;color:rgba(255,255,255,.5)}
+.pol-itv{font-size:12px;font-weight:600;color:#fff}
+
+/* ── PILL ── */
+.pill{display:flex;align-items:center;gap:10px;background:var(--gl);border:1.5px solid var(--green);border-radius:14px;padding:10px 14px;margin:0 14px 10px}
+.pill strong{font-size:13px;font-weight:700;color:var(--dg)}
+.pill span{font-size:11px;color:var(--sub);display:block}
+
+/* ── HOME CARDS ── */
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px;margin-bottom:14px}
+.prod-c{background:#fff;border-radius:18px;padding:16px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s,box-shadow .15s;border:1.5px solid transparent}
+.prod-c:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.prod-c:active{transform:scale(.97)}
+.prod-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.prod-icon.car{background:#e8f4ff}
+.prod-icon.bike{background:#fff3e8}
+.prod-icon.renew{background:#e8fff4}
+.prod-icon.claim{background:#ffeaea}
+.prod-nm{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.prod-from{font-size:11px;color:var(--sub)}
+.prod-from strong{color:var(--green);font-weight:700}
+.prod-cta{font-size:11px;font-weight:600;color:var(--dg);margin-top:8px;display:flex;align-items:center;gap:3px}
+
+/* ── TRUST BAR ── */
+.trust-bar{display:flex;gap:0;background:#fff;margin:0 14px 12px;border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.trust-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 6px;gap:3px;border-right:1px solid var(--bg)}
+.trust-item:last-child{border-right:none}
+.trust-item strong{font-size:13px;font-weight:700;color:var(--dg)}
+.trust-item span{font-size:10px;color:var(--sub);text-align:center}
+
+/* ── SECTION HEADER ── */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 14px;margin-bottom:10px;margin-top:4px}
+.sec-hdr h3{font-size:15px;font-weight:700;color:var(--txt)}
+.sec-hdr a{font-size:12px;color:var(--green);font-weight:600;cursor:pointer}
+
+/* ── POLICY LIST ── */
+.pol-row{background:#fff;border-radius:16px;padding:14px 16px;margin:0 14px 10px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 4px rgba(0,0,0,.05);cursor:pointer}
+.pol-row-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pol-row-info{flex:1}
+.pol-row-nm{font-size:14px;font-weight:700;color:var(--txt)}
+.pol-row-sub{font-size:11px;color:var(--sub);margin-top:1px}
+.pol-row-badge{font-size:10px;font-weight:600;background:var(--gl);color:var(--dg);border-radius:999px;padding:3px 9px}
+.pol-row-badge.exp{background:#fff3e8;color:#c05d00}
+.pol-row-badge.red{background:#ffeaea;color:#b91c1c}
+
+/* ── CHIP TABS ── */
+.chip-tabs{display:flex;gap:8px;padding:0 14px;margin-bottom:12px}
+.chip{font-size:12px;font-weight:600;padding:7px 16px;border-radius:999px;cursor:pointer;border:1.5px solid var(--dis);color:var(--mut);background:#fff;transition:all .2s}
+.chip.act{background:var(--dg);color:#fff;border-color:var(--dg)}
+
+/* ── CLAIM STATUS TRACKER ── */
+.tracker{margin-top:4px}
+.track-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:4px}
+.track-dot-wrap{display:flex;flex-direction:column;align-items:center;width:24px;flex-shrink:0}
+.track-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--dis);background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.track-dot.dn{background:var(--green);border-color:var(--green);color:#fff}
+.track-dot.act{background:var(--dg);border-color:var(--dg);color:#fff;animation:pulse 1.5s infinite}
+.track-vline{flex:1;width:2px;background:var(--dis);min-height:18px;margin:2px 0}
+.track-vline.dn{background:var(--green)}
+.track-row:last-child .track-vline{display:none}
+.track-info{padding-bottom:16px}
+.track-nm{font-size:13px;font-weight:600;color:var(--txt)}
+.track-sub{font-size:11px;color:var(--sub);margin-top:2px}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(46,216,142,.4)}50%{box-shadow:0 0 0 6px rgba(46,216,142,0)}}
+
+/* ── ONBOARDING ── */
+.ob-wrap{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 28px 32px}
+.ob-illu{width:100%;height:260px;display:flex;align-items:center;justify-content:center;position:relative}
+.ob-dots{display:flex;gap:6px;margin-bottom:28px}
+.ob-dot{width:8px;height:8px;border-radius:50%;background:var(--dis)}
+.ob-dot.act{width:24px;border-radius:4px;background:var(--green)}
+.ob-t{font-size:24px;font-weight:800;color:var(--txt);text-align:center;margin-bottom:10px;line-height:1.3}
+.ob-s{font-size:14px;color:var(--sub);text-align:center;line-height:1.6;margin-bottom:32px}
+.ob-skip{font-size:13px;color:var(--mut);text-decoration:underline;cursor:pointer;margin-top:12px}
+
+/* ── LOGIN GATE ── */
+.login-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px}
+.login-icon{width:64px;height:64px;background:var(--gl);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.login-t{font-size:19px;font-weight:700;color:var(--txt);text-align:center;margin-bottom:6px}
+.login-s{font-size:13px;color:var(--sub);text-align:center;line-height:1.5;margin-bottom:24px}
+.otp-row{display:flex;gap:8px;margin-bottom:14px}
+.otp-row input{flex:1;text-align:center;font-size:20px;font-weight:700;border:1.5px solid var(--bd);border-radius:10px;height:50px;font-family:'Poppins',sans-serif;outline:none;color:var(--dg)}
+.otp-row input:focus{border-color:var(--dg)}
+
+/* ── PROFILE ── */
+.avatar{width:72px;height:72px;border-radius:50%;background:var(--dg);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:var(--green);margin:0 auto 10px}
+.profile-nm{font-size:18px;font-weight:700;color:var(--txt);text-align:center}
+.profile-sub{font-size:12px;color:var(--sub);text-align:center;margin-top:3px}
+.menu-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--bg);cursor:pointer}
+.menu-row:last-child{border-bottom:none}
+.menu-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.menu-nm{font-size:14px;font-weight:500;color:var(--txt);flex:1}
+.menu-arr{color:var(--mut);font-size:18px}
+.toggle-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--bg)}
+.toggle{width:42px;height:24px;border-radius:999px;background:var(--green);position:relative;cursor:pointer;flex-shrink:0}
+.toggle::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:#fff;top:3px;right:3px;transition:transform .2s}
+
+/* ── MISC ── */
+.spacer{flex:1;min-height:16px}
+.ft{text-align:center;padding:8px 20px 16px;font-size:11px;color:var(--mut)}
+.tag{display:inline-block;font-size:10px;font-weight:600;border-radius:999px;padding:2px 8px}
+.tag.gr{background:var(--gl);color:var(--dg)}
+.tag.am{background:#fff3e8;color:#c05d00}
+.section-bg{background:var(--bg);padding:14px 0 4px;margin:10px 0 0}
+</style>
+</head>
+<body>
+<div class="phone" id="app">
+
+<!-- ████████████████  ONBOARDING 1  ████████████████ -->
+<div class="scr on" id="ob1">
+  <div style="background:var(--dg);padding:20px 24px 0;flex-shrink:0">
+    <div class="logo"><div class="logob"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16303d"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="logot">INSUR<span>A</span>NCE</div></div>
+  </div>
+  <div style="background:linear-gradient(180deg,var(--dg) 44%,var(--bg) 44%);padding:0 28px">
+    <div class="ob-illu">
+      <svg width="220" height="180" viewBox="0 0 220 180" fill="none">
+        <ellipse cx="110" cy="155" rx="90" ry="14" fill="rgba(46,216,142,0.15)"/>
+        <rect x="30" y="80" width="160" height="70" rx="12" fill="#1e4a5e"/>
+        <rect x="50" y="95" width="120" height="40" rx="8" fill="#2a6070"/>
+        <circle cx="60" cy="150" r="16" fill="#16303d" stroke="#2ed88e" stroke-width="3"/>
+        <circle cx="60" cy="150" r="7" fill="#2ed88e"/>
+        <circle cx="160" cy="150" r="16" fill="#16303d" stroke="#2ed88e" stroke-width="3"/>
+        <circle cx="160" cy="150" r="7" fill="#2ed88e"/>
+        <rect x="40" y="70" width="50" height="22" rx="5" fill="#2ed88e"/>
+        <rect x="130" y="72" width="50" height="18" rx="5" fill="#1e4a5e"/>
+        <rect x="22" y="90" width="18" height="8" rx="2" fill="#2a6070"/>
+        <rect x="180" y="90" width="18" height="8" rx="2" fill="#2a6070"/>
+        <!-- speedometer -->
+        <circle cx="170" cy="50" r="28" fill="#16303d" stroke="#2ed88e" stroke-width="2"/>
+        <text x="170" y="46" font-size="9" fill="#fff" text-anchor="middle" font-family="Poppins">60s</text>
+        <text x="170" y="57" font-size="7" fill="#2ed88e" text-anchor="middle" font-family="Poppins">to insure</text>
+        <!-- checkmark badge -->
+        <circle cx="50" cy="45" r="22" fill="var(--green)"/>
+        <polyline points="40,45 48,53 62,37" fill="none" stroke="#16303d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+  <div class="ob-wrap">
+    <div class="ob-dots"><div class="ob-dot act" onclick="show('ob1')" style="cursor:pointer"></div><div class="ob-dot" onclick="show('ob2')" style="cursor:pointer"></div><div class="ob-dot" onclick="show('ob3')" style="cursor:pointer"></div></div>
+    <div class="ob-t">Insured in<br/><span style="color:var(--green)">60 Seconds</span></div>
+    <div class="ob-s">Enter your plate number — we fill the rest. No paperwork, no branch visits. Get your policy instantly on your phone.</div>
+    <button class="bp" onclick="show('ob2')">Next <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <span class="ob-skip" onclick="show('home')">Skip intro</span>
+  </div>
+</div>
+
+<!-- ████████████████  ONBOARDING 2  ████████████████ -->
+<div class="scr" id="ob2">
+  <div style="background:var(--dg);padding:20px 24px 0;flex-shrink:0">
+    <div class="logo"><div class="logob"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16303d"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="logot">INSUR<span>A</span>NCE</div></div>
+  </div>
+  <div style="background:linear-gradient(180deg,var(--dg) 44%,var(--bg) 44%);padding:0 28px">
+    <div class="ob-illu">
+      <svg width="220" height="180" viewBox="0 0 220 180" fill="none">
+        <ellipse cx="110" cy="158" rx="75" ry="10" fill="rgba(46,216,142,0.12)"/>
+        <!-- Phone with claim UI -->
+        <rect x="70" y="30" width="80" height="130" rx="12" fill="#1e4a5e"/>
+        <rect x="76" y="42" width="68" height="100" rx="6" fill="#0d2530"/>
+        <rect x="84" y="52" width="52" height="28" rx="4" fill="#2a6070"/>
+        <!-- photo upload icon -->
+        <rect x="88" y="56" width="44" height="20" rx="3" fill="#1e4a5e"/>
+        <circle cx="110" cy="66" r="6" fill="none" stroke="#2ed88e" stroke-width="1.5"/>
+        <rect x="106" y="57" width="8" height="4" rx="1" fill="#2ed88e"/>
+        <!-- status steps -->
+        <circle cx="87" cy="95" r="5" fill="#2ed88e"/>
+        <rect x="95" y="92" width="38" height="3" rx="1" fill="#2a6070"/>
+        <rect x="95" y="97" width="24" height="2" rx="1" fill="#1e4a5e"/>
+        <circle cx="87" cy="110" r="5" fill="#2ed88e"/>
+        <rect x="95" y="107" width="38" height="3" rx="1" fill="#2a6070"/>
+        <rect x="95" y="112" width="28" height="2" rx="1" fill="#1e4a5e"/>
+        <circle cx="87" cy="125" r="5" fill="#1e4a5e" stroke="#2ed88e" stroke-width="1.5"/>
+        <rect x="95" y="122" width="38" height="3" rx="1" fill="#1e4a5e"/>
+        <!-- spark -->
+        <circle cx="168" cy="50" r="26" fill="#2ed88e22" stroke="#2ed88e" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="168" y="46" font-size="10" fill="#2ed88e" text-anchor="middle" font-family="Poppins" font-weight="700">Live</text>
+        <text x="168" y="58" font-size="8" fill="#fff" text-anchor="middle" font-family="Poppins">Tracking</text>
+        <circle cx="50" cy="80" r="22" fill="#16303d" stroke="#2ed88e" stroke-width="2"/>
+        <text x="50" y="77" font-size="8" fill="#2ed88e" text-anchor="middle" font-family="Poppins" font-weight="700">No</text>
+        <text x="50" y="88" font-size="8" fill="#fff" text-anchor="middle" font-family="Poppins">calls</text>
+      </svg>
+    </div>
+  </div>
+  <div class="ob-wrap">
+    <div class="ob-dots"><div class="ob-dot" onclick="show('ob1')" style="cursor:pointer"></div><div class="ob-dot act" onclick="show('ob2')" style="cursor:pointer"></div><div class="ob-dot" onclick="show('ob3')" style="cursor:pointer"></div></div>
+    <div class="ob-t">Claims<br/><span style="color:var(--green)">Without the Stress</span></div>
+    <div class="ob-s">Snap a photo, describe the incident, track your claim live — no endless phone calls, no confusing forms.</div>
+    <button class="bp" onclick="show('ob3')">Next <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <span class="ob-skip" onclick="show('home')">Skip intro</span>
+  </div>
+</div>
+
+<!-- ████████████████  ONBOARDING 3  ████████████████ -->
+<div class="scr" id="ob3">
+  <div style="background:var(--dg);padding:20px 24px 0;flex-shrink:0">
+    <div class="logo"><div class="logob"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16303d"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="logot">INSUR<span>A</span>NCE</div></div>
+  </div>
+  <div style="background:linear-gradient(180deg,var(--dg) 44%,var(--bg) 44%);padding:0 28px">
+    <div class="ob-illu">
+      <svg width="220" height="180" viewBox="0 0 220 180" fill="none">
+        <ellipse cx="110" cy="158" rx="80" ry="11" fill="rgba(46,216,142,0.12)"/>
+        <!-- renewal card -->
+        <rect x="40" y="50" width="140" height="90" rx="14" fill="#16303d"/>
+        <rect x="54" y="64" width="60" height="7" rx="3" fill="#2a6070"/>
+        <rect x="54" y="76" width="90" height="10" rx="4" fill="#2ed88e"/>
+        <rect x="54" y="91" width="40" height="5" rx="2" fill="#2a6070"/>
+        <rect x="54" y="100" width="55" height="5" rx="2" fill="#1e4a5e"/>
+        <!-- 1-tap button -->
+        <rect x="100" y="118" width="66" height="18" rx="9" fill="#2ed88e"/>
+        <text x="133" y="131" font-size="9" fill="#16303d" text-anchor="middle" font-family="Poppins" font-weight="700">Renew Now</text>
+        <!-- compare badge -->
+        <rect x="148" y="55" width="46" height="20" rx="5" fill="#2ed88e22" stroke="#2ed88e" stroke-width="1"/>
+        <text x="171" y="63" font-size="7" fill="#2ed88e" text-anchor="middle" font-family="Poppins">What</text>
+        <text x="171" y="72" font-size="7" fill="#2ed88e" text-anchor="middle" font-family="Poppins">changed?</text>
+        <!-- calendar reminder -->
+        <circle cx="50" cy="145" r="18" fill="#2ed88e"/>
+        <text x="50" y="142" font-size="8" fill="#16303d" text-anchor="middle" font-family="Poppins" font-weight="700">⏰</text>
+        <text x="50" y="153" font-size="7" fill="#16303d" text-anchor="middle" font-family="Poppins">Remind</text>
+      </svg>
+    </div>
+  </div>
+  <div class="ob-wrap">
+    <div class="ob-dots"><div class="ob-dot" onclick="show('ob1')" style="cursor:pointer"></div><div class="ob-dot" onclick="show('ob2')" style="cursor:pointer"></div><div class="ob-dot act" onclick="show('ob3')" style="cursor:pointer"></div></div>
+    <div class="ob-t">Renew in<br/><span style="color:var(--green)">One Tap</span></div>
+    <div class="ob-s">We remind you before your policy expires. See what's changed this year and renew instantly — no re-entering your details.</div>
+    <button class="bp" onclick="show('home')">Get Started</button>
+    <span class="ob-skip" onclick="show('login-standalone')">Already have an account? Log in</span>
+  </div>
+</div>
+
+<!-- ████████████████  HOME  ████████████████ -->
+<div class="scr" id="home">
+  <div class="sb"><span class="t">9:41</span><div class="ic"><svg viewBox="0 0 24 24" width="13" height="13" fill="#fff"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 00-6 0zm-4-4l2 2a7.074 7.074 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg><svg viewBox="0 0 24 24" width="13" height="13" fill="#fff"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33C16.4 22 17 21.4 17 20.67V5.33C17 4.6 16.4 4 15.67 4z"/></svg></div></div>
+  <div class="topnav">
+    <div class="logo"><div class="logob"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16303d"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="logot">INSUR<span>A</span>NCE</div></div>
+    <button class="btn-login" onclick="show('login-standalone')">Log in</button>
+  </div>
+  <div class="hero">
+    <div class="hero-tag">Azentio Insurance · Kuwait</div>
+    <div class="hero-title">Insurance that<br/><span>Respects Your Time</span></div>
+    <div class="hero-sub">Check pricing instantly — no login needed. Guided buying, instant policy, live claim tracking.</div>
+    <div style="margin-top:14px;position:relative;display:flex;gap:10px">
+      <button class="bp" style="flex:1;font-size:13px;padding:11px" onclick="show('car-v')">🚗 Insure My Car</button>
+      <button class="bp out" style="flex:1;font-size:13px;padding:11px;background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)" onclick="show('bike-v')">🛵 Two-Wheeler</button>
+    </div>
+  </div>
+
+  <div class="trust-bar" style="margin-top:14px">
+    <div class="trust-item"><strong>60K+</strong><span>Policies Issued</span></div>
+    <div class="trust-item"><strong>60s</strong><span>Avg Buy Time</span></div>
+    <div class="trust-item"><strong>24/7</strong><span>Support</span></div>
+    <div class="trust-item"><strong>4.8★</strong><span>App Rating</span></div>
+  </div>
+
+  <div class="sec-hdr" style="margin-top:6px"><h3>What do you need?</h3></div>
+  <div class="prod-grid">
+    <div class="prod-c" onclick="show('car-v')">
+      <div class="prod-icon car"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1e6fa8" stroke-width="2" stroke-linecap="round"><path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h1l2-3h10l2 3h1a2 2 0 012 2v6a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/></svg></div>
+      <div class="prod-nm">Car Insurance</div>
+      <div class="prod-from">From <strong>KWD 85/yr</strong></div>
+      <div class="prod-cta">Check price <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16303d" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="prod-c" onclick="show('bike-v')">
+      <div class="prod-icon bike"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c05d00" stroke-width="2" stroke-linecap="round"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-5l-2 5 5 2 2-7zM15 6l2 5"/></svg></div>
+      <div class="prod-nm">Two-Wheeler</div>
+      <div class="prod-from">From <strong>KWD 22/yr</strong></div>
+      <div class="prod-cta">Check price <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16303d" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="prod-c" onclick="show('ren-1')">
+      <div class="prod-icon renew"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1a7a4e" stroke-width="2" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>
+      <div class="prod-nm">Renew Policy</div>
+      <div class="prod-from">Quick <strong>1-tap</strong> renewal</div>
+      <div class="prod-cta">Renew now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16303d" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+    <div class="prod-c" onclick="show('claim-1')">
+      <div class="prod-icon claim"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+      <div class="prod-nm">File a Claim</div>
+      <div class="prod-from"><strong>Photo-based</strong> intake</div>
+      <div class="prod-cta">Start claim <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16303d" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+    </div>
+  </div>
+
+  <div class="sec-hdr"><h3>Why choose us</h3></div>
+  <div style="padding:0 14px;margin-bottom:16px;display:flex;flex-direction:column;gap:8px">
+    <div style="background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)">
+      <div style="font-size:22px">🎯</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--txt)">Guided, not overwhelming</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Smart defaults, plain language, no jargon</div></div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)">
+      <div style="font-size:22px">🔒</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--txt)">Browse without signing up</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Check pricing freely. Login only when you buy</div></div>
+    </div>
+    <div style="background:#fff;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)">
+      <div style="font-size:22px">📲</div>
+      <div><div style="font-size:13px;font-weight:700;color:var(--txt)">Policy on your phone instantly</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Digital policy card, no waiting, no printing</div></div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="bnav" id="bnav-home">
+    <div class="bni act" onclick="switchTab('home')"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></div>
+    <div class="bni" onclick="switchTab('products')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.99 16.81 1.5 15 1.5c-1 0-2 .5-2.6 1.3L12 3.67l-.4-.87C10.99 2 10 1.5 9 1.5 7.19 1.5 6 2.99 6 4.65c0 .47.11.91.18 1.35H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5-2.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35-1.27-1.16-2.32-2.4-2.32-3.35 0-.48.67-1.15 1.5-1.15h1.64zM9 3.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35C6.91 6.84 5.87 5.6 5.87 4.65c0-.48.67-1.15 1.5-1.15H9zM4 19V8h5.54c.3.35.62.67.93.98.96.96 1.9 1.8 1.9 1.8l.63.57.63-.57s.94-.84 1.9-1.8c.31-.31.63-.63.93-.98H20v11H4z"/></svg><span>Products</span></div>
+    <div class="bni" onclick="switchTab('my-policies')"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg><span>My Policies</span></div>
+    <div class="bni" onclick="switchTab('profile')"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg><span>Profile</span></div>
+  </div>
+</div>
+
+<!-- ████████████████  PRODUCTS TAB  ████████████████ -->
+<div class="scr" id="products">
+  <div class="sb"><span class="t">9:41</span><div class="ic"><svg viewBox="0 0 24 24" width="13" height="13" fill="#fff"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3a4.237 4.237 0 00-6 0zm-4-4l2 2a7.074 7.074 0 0110 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg></div></div>
+  <div class="topnav"><div class="logo"><div class="logob"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16303d"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="logot">INSUR<span>A</span>NCE</div></div><button class="btn-login" onclick="show('login-standalone')">Log in</button></div>
+  <div style="padding:16px 14px 8px"><h2 style="font-size:20px;font-weight:800;color:var(--txt)">Our Products</h2><p style="font-size:13px;color:var(--sub);margin-top:4px">Check pricing freely — no account needed</p></div>
+  <div class="chip-tabs">
+    <div class="chip act" onclick="filterProducts('all',this)">All</div>
+    <div class="chip" onclick="filterProducts('motor',this)">Motor</div>
+    <div class="chip" onclick="filterProducts('addons',this)">Add-ons</div>
+  </div>
+  <div style="padding:0 14px;display:flex;flex-direction:column;gap:12px;margin-bottom:16px" id="prod-list">
+    <div class="prod-card-item" data-cat="motor" style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.07);cursor:pointer" onclick="show('car-v')">
+      <div style="height:120px;background:linear-gradient(135deg,#1a3f52,#2ed88e22);display:flex;align-items:center;justify-content:center">
+        <svg width="70" height="56" viewBox="0 0 70 56" fill="none"><rect x="5" y="20" width="60" height="26" rx="7" fill="#1e4a5e"/><path d="M15 20l6-14h28l6 14" fill="#2a6070"/><circle cx="18" cy="46" r="9" fill="#16303d" stroke="#2ed88e" stroke-width="2"/><circle cx="18" cy="46" r="4" fill="#2ed88e"/><circle cx="52" cy="46" r="9" fill="#16303d" stroke="#2ed88e" stroke-width="2"/><circle cx="52" cy="46" r="4" fill="#2ed88e"/></svg>
+      </div>
+      <div style="padding:14px 16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:16px;font-weight:700;color:var(--txt)">Car Insurance</span><span class="tag gr">Popular</span></div>
+        <p style="font-size:12px;color:var(--sub);margin-bottom:10px">Third party to comprehensive cover. Instant digital policy for your vehicle.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:700;color:var(--dg)">From KWD 85/yr</span><button class="bp" style="width:auto;padding:8px 18px;font-size:13px;margin-top:0" onclick="event.stopPropagation();show('car-v')">Get Quote</button></div>
+      </div>
+    </div>
+    <div class="prod-card-item" data-cat="motor" style="background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.07);cursor:pointer" onclick="show('bike-v')">
+      <div style="height:120px;background:linear-gradient(135deg,#2d1a0e,#c05d0022);display:flex;align-items:center;justify-content:center">
+        <svg width="80" height="56" viewBox="0 0 80 56" fill="none"><circle cx="18" cy="40" r="14" fill="#2a1a0e" stroke="#f59e0b" stroke-width="2"/><circle cx="18" cy="40" r="6" fill="#f59e0b"/><circle cx="62" cy="40" r="14" fill="#2a1a0e" stroke="#f59e0b" stroke-width="2"/><circle cx="62" cy="40" r="6" fill="#f59e0b"/><path d="M28 22h12l6 10h8" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/><path d="M40 22L34 38" stroke="#c05d00" stroke-width="3" stroke-linecap="round"/><circle cx="52" cy="18" r="6" fill="#2a1a0e" stroke="#f59e0b" stroke-width="1.5"/></svg>
+      </div>
+      <div style="padding:14px 16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:16px;font-weight:700;color:var(--txt)">Two-Wheeler</span><span class="tag" style="background:#fff3e8;color:#c05d00">Bikes & Scooters</span></div>
+        <p style="font-size:12px;color:var(--sub);margin-bottom:10px">Affordable cover for bikes and scooters. Get insured in under 60 seconds.</p>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:700;color:var(--dg)">From KWD 22/yr</span><button class="bp" style="width:auto;padding:8px 18px;font-size:13px;margin-top:0" onclick="event.stopPropagation();show('bike-v')">Get Quote</button></div>
+      </div>
+    </div>
+    <div class="prod-card-item" data-cat="addons" id="addons-empty" style="display:none;background:#fff;border-radius:20px;padding:28px 20px;text-align:center;box-shadow:0 1px 5px rgba(0,0,0,.07)">
+      <div style="font-size:32px;margin-bottom:10px">🛡️</div>
+      <div style="font-size:15px;font-weight:700;color:var(--txt);margin-bottom:6px">Add-ons coming soon</div>
+      <div style="font-size:12px;color:var(--sub);line-height:1.5">Standalone add-ons like roadside assistance and personal accident cover will be available here. Select a plan first to add them at checkout.</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="bnav">
+    <div class="bni" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></div>
+    <div class="bni act" onclick="switchTab('products')"><svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.99 16.81 1.5 15 1.5c-1 0-2 .5-2.6 1.3L12 3.67l-.4-.87C10.99 2 10 1.5 9 1.5 7.19 1.5 6 2.99 6 4.65c0 .47.11.91.18 1.35H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5-2.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35-1.27-1.16-2.32-2.4-2.32-3.35 0-.48.67-1.15 1.5-1.15h1.64zM9 3.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35C6.91 6.84 5.87 5.6 5.87 4.65c0-.48.67-1.15 1.5-1.15H9zM4 19V8h5.54c.3.35.62.67.93.98.96.96 1.9 1.8 1.9 1.8l.63.57.63-.57s.94-.84 1.9-1.8c.31-.31.63-.63.93-.98H20v11H4z"/></svg><span>Products</span></div>
+    <div class="bni" onclick="switchTab('my-policies')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg><span>My Policies</span></div>
+    <div class="bni" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg><span>Profile</span></div>
+  </div>
+</div>
+
+<!-- ████████████████  CAR – VEHICLE DETAILS  ████████████████ -->
+<div class="scr" id="car-v">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Car Insurance</h2><span class="tag gr" style="font-size:11px">No login needed</span></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">1</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">2</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">3</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="card">
+    <div class="card-t">Enter Your Vehicle Number</div>
+    <div class="card-s">We'll fetch your car details automatically</div>
+    <div class="arow">
+      <button class="abtn" onclick="showToast('Camera opened — scan your plate')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>Take a photo</button>
+      <button class="abtn" onclick="showToast('Photo upload ready')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>Upload image</button>
+    </div>
+    <div class="fgrp">
+      <div class="irow"><div class="iflag">🇰🇼 <span>KW</span></div><input type="text" placeholder="e.g. KNH5789" value="KNH5789"/></div>
+      <div class="ihint">Enter the number exactly as on your Registration Certificate (RC)</div>
+    </div>
+    <button class="bp" onclick="show('car-p')">Fetch Details <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <span class="link-t" onclick="showToast('Manual entry form opened below')">Can't find your vehicle? Enter details manually →</span>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  CAR – CHOOSE PLAN  ████████████████ -->
+<div class="scr" id="car-p">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('car-v')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Choose Plan</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">2</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">3</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="pill"><span style="font-size:20px">🚗</span><div><strong>Toyota Camry 2021 – KNH5789</strong><span>Sedan · 2.5L · Silver · Auto-filled ✓</span></div></div>
+  <div class="card" style="padding:18px 0 18px">
+    <div class="card-t" style="padding:0 18px">Choose Your Plan</div>
+    <div class="card-s" style="padding:0 18px">Browse freely — no login required to compare</div>
+    <div style="padding:0 14px">
+      <div class="plan-c" id="cp-third" onclick="selectPlan('cp','third')">
+        <div class="radio-c"></div>
+        <div class="plan-img"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"><path d="M5 17H3a2 2 0 01-2-2V9a2 2 0 012-2h1l2-3h10l2 3h1a2 2 0 012 2v6a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/></svg></div>
+        <div class="plan-body"><div class="plan-hrow"><div class="plan-nm">Third Party</div><div class="plan-pr">KWD 88<span>/yr</span></div></div><div class="plan-d">Covers damage to others. Legally required minimum — fastest to buy.</div><div style="font-size:10px;color:var(--mut);margin-top:4px">Incl. service fee & 5% VAT</div></div>
+      </div>
+      <div class="plan-c sel" id="cp-comp" onclick="selectPlan('cp','comp')">
+        <div class="plan-badge">Most Popular</div><div class="radio-c"></div>
+        <div class="plan-img" style="background:linear-gradient(135deg,#16303d,#2ed88e33)"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="plan-body"><div class="plan-hrow"><div class="plan-nm">Comprehensive</div><div class="plan-pr">KWD 147<span>/yr</span></div></div><div class="plan-d">Own damage + third party. Includes fire, theft, windshield. Best value.</div><div style="font-size:10px;color:var(--mut);margin-top:4px">Incl. service fee & 5% VAT</div></div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,.07);margin-top:4px">
+      <div class="addon-hdr" onclick="toggleAddon('ca')"><span>Recommended Add-ons</span><span class="addon-arr" id="ca-arr">›</span></div>
+      <div class="addon-bd" id="ca-bd">
+        <div class="addon-row"><input type="checkbox" id="ca1"/><div><div class="addon-nm">Zero Depreciation</div><div class="addon-tip">Full claim value — no deduction for wear & tear</div></div></div>
+        <div class="addon-row"><input type="checkbox" id="ca2"/><div><div class="addon-nm">Engine Protection</div><div class="addon-tip">Covers engine damage from floods or oil leaks</div></div></div>
+        <div class="addon-row"><input type="checkbox" id="ca3"/><div><div class="addon-nm">NCB Protection</div><div class="addon-tip">Keep your no-claim bonus even after a claim</div></div></div>
+      </div>
+    </div>
+    <div style="padding:14px 14px 0">
+      <button class="bp" onclick="show('car-login')">Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+      <button class="bp out" style="margin-top:10px" onclick="show('car-v')">← Back</button>
+    </div>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  CAR – LOGIN GATE  ████████████████ -->
+<div class="scr" id="car-login">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('car-p')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Almost there</h2></div>
+  <div class="login-wrap">
+    <div class="login-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="login-t">Sign in to complete<br/>your purchase</div>
+    <div class="login-s">Your plan is saved. Enter your mobile number to get a one-time code and complete checkout securely.</div>
+    <div class="fgrp" style="width:100%">
+      <div class="flbl">Mobile Number</div>
+      <div class="irow"><div class="iflag">🇰🇼 <span>+965</span></div><input type="tel" placeholder="XXXX XXXX" value="9876 5432"/></div>
+    </div>
+    <button class="bp" style="width:100%;margin-bottom:10px" onclick="show('car-otp')">Send OTP <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <div style="display:flex;align-items:center;gap:8px;margin:10px 0"><div style="flex:1;height:1px;background:var(--dis)"></div><span style="font-size:11px;color:var(--mut)">or</span><div style="flex:1;height:1px;background:var(--dis)"></div></div>
+    <button class="bp out" style="width:100%;margin-bottom:4px" onclick="show('car-d')">Continue as Guest</button>
+    <div style="text-align:center;font-size:11px;color:var(--mut);margin-top:6px;line-height:1.5">Guest checkout: we'll email your policy. No account saved.</div>
+    <div style="text-align:center;font-size:12px;color:var(--mut);margin-top:10px">By continuing, you agree to our <span style="color:var(--dg);text-decoration:underline;cursor:pointer">Terms & Privacy Policy</span></div>
+  </div>
+</div>
+
+<!-- ████████████████  CAR – OTP VERIFY  ████████████████ -->
+<div class="scr" id="car-otp">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('car-login')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Verify OTP</h2></div>
+  <div class="login-wrap">
+    <div class="login-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+    <div class="login-t">Enter OTP</div>
+    <div class="login-s">We sent a 6-digit code to <strong>+965 9876 5432</strong>. It expires in 5 minutes.</div>
+    <div class="otp-row"><input maxlength="1" value="4"/><input maxlength="1" value="2"/><input maxlength="1" value="7"/><input maxlength="1" value="8"/><input maxlength="1" value="3"/><input maxlength="1" value="1"/></div>
+    <button class="bp" style="width:100%;margin-bottom:12px" onclick="show('car-d')">Verify & Continue</button>
+    <span class="link-t" style="margin-top:0">Resend code in 0:45</span>
+  </div>
+</div>
+
+<!-- ████████████████  CAR – PERSONAL DETAILS  ████████████████ -->
+<div class="scr" id="car-d">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('car-otp')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Personal Details</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">3</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="card">
+    <div class="card-t">Personal Details</div>
+    <div class="card-s">Just the essentials — we keep forms short.</div>
+    <div class="fgrp"><label class="flbl">Full Name</label><input class="isolo" type="text" value="Ahmad Al-Rashidi"/></div>
+    <div class="fgrp"><label class="flbl">Civil ID Number</label><input class="isolo" type="text" value="285121003456"/></div>
+    <div class="fgrp"><label class="flbl">Email Address</label><input class="isolo" type="email" value="ahmad@email.com"/></div>
+    <div class="fgrp"><label class="flbl">Date of Birth</label><input class="isolo" type="date" value="1985-06-15"/></div>
+    <div class="fgrp"><label class="flbl">Driving Licence Type</label><div class="irow"><select style="flex:1;border:none;outline:none;font-family:'Poppins',sans-serif;font-size:14px;color:var(--txt);background:#f8f9fa;padding:0 12px;height:48px"><option>Private – Class 5</option><option>Commercial – Class 3</option></select></div></div>
+    <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:14px"><input type="checkbox" id="tc-car" style="margin-top:3px;accent-color:var(--dg)"/><label for="tc-car" style="font-size:11px;color:var(--sub);line-height:1.5">I agree to the <span style="color:var(--dg);text-decoration:underline">Terms & Conditions</span> and <span style="color:var(--dg);text-decoration:underline">Privacy Policy</span></label></div>
+    <button class="bp" onclick="show('car-r')">Review My Policy <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <button class="bp out" style="margin-top:10px" onclick="show('car-p')">← Back</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  CAR – REVIEW  ████████████████ -->
+<div class="scr" id="car-r">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('car-d')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Review Policy</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="card">
+    <div class="card-t">Review Your Policy</div><div class="card-s">Check everything before you pay</div>
+    <div class="rsec"><div class="rhd">Vehicle</div>
+      <div class="rrow"><span class="rl">Make & Model</span><span class="rv">Toyota Camry 2021</span></div>
+      <div class="rrow"><span class="rl">Plate Number</span><span class="rv">KNH5789</span></div>
+      <div class="rrow"><span class="rl">Body Type</span><span class="rv">Sedan · Silver</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Selected Plan</div>
+      <div class="rrow"><span class="rl">Plan</span><span class="rv" style="color:var(--dg)">Comprehensive</span></div>
+      <div class="rrow"><span class="rl">Coverage</span><span class="rv">Own Damage + Third Party</span></div>
+      <div class="rrow"><span class="rl">Start Date</span><span class="rv">25 Mar 2026</span></div>
+      <div class="rrow"><span class="rl">Valid Until</span><span class="rv">25 Mar 2027</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Policyholder</div>
+      <div class="rrow"><span class="rl">Name</span><span class="rv">Ahmad Al-Rashidi</span></div>
+      <div class="rrow"><span class="rl">Civil ID</span><span class="rv">285121003456</span></div>
+      <div class="rrow"><span class="rl">Mobile</span><span class="rv">+965 9876 5432</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Payment</div>
+      <div class="rrow"><span class="rl">Plan Premium</span><span class="rv">KWD 130.000</span></div>
+      <div class="rrow"><span class="rl">Service Fee</span><span class="rv">KWD 10.000</span></div>
+      <div class="rrow"><span class="rl">VAT (5% on 140)</span><span class="rv">KWD 7.000</span></div>
+    </div>
+    <div class="total-b"><span class="total-l">Total</span><span class="total-v">KWD 147.000</span></div>
+    <button class="bp gr" onclick="show('car-done')"><svg width="18" height="18" viewBox="0 0 24 24" fill="#16303d"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>Pay KWD 147.000</button>
+    <button class="bp out" style="margin-top:10px" onclick="show('car-d')">← Edit Details</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  CAR – SUCCESS  ████████████████ -->
+<div class="scr" id="car-done">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><div style="width:32px"></div><h2>Policy Issued</h2></div>
+  <div class="suc-wrap">
+    <div class="suc-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+    <div class="suc-t">Policy Issued! 🎉</div>
+    <div class="suc-s">Your insurance is active. We've emailed the policy to <strong>ahmad@email.com</strong></div>
+    <div class="pol-card">
+      <div class="pol-label">Policy Number</div>
+      <div class="pol-num">AZN-2026-KW-78432</div>
+      <div class="pol-grid">
+        <div><div class="pol-itl">Vehicle</div><div class="pol-itv">Toyota Camry</div></div>
+        <div><div class="pol-itl">Plate</div><div class="pol-itv">KNH5789</div></div>
+        <div><div class="pol-itl">Plan</div><div class="pol-itv">Comprehensive</div></div>
+        <div><div class="pol-itl">Valid Until</div><div class="pol-itv">25 Mar 2027</div></div>
+      </div>
+    </div>
+    <button class="bp" style="width:100%;margin-bottom:10px" onclick="showToast('Policy PDF downloading… check your downloads')"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Download Policy PDF</button>
+    <button class="bp out" style="width:100%" onclick="switchTab('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- ████████████████  BIKE – VEHICLE DETAILS  ████████████████ -->
+<div class="scr" id="bike-v">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Two-Wheeler Insurance</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">1</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">2</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">3</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div style="background:linear-gradient(135deg,#2d1a0e,#c05d0018);padding:18px 20px 22px;position:relative;flex-shrink:0">
+    <div style="font-size:10px;font-weight:500;color:#f59e0b;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px">Bike & Scooter Cover</div>
+    <div style="font-size:19px;font-weight:800;color:#fff;line-height:1.3">Insure Your<br/><span style="color:#f59e0b">Two-Wheeler Fast</span></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:6px">From KWD 22/yr · Coverage starts instantly</div>
+  </div>
+  <div class="card">
+    <div class="card-t">Enter Registration Number</div>
+    <div class="card-s">We'll auto-fill your bike details</div>
+    <div class="arow">
+      <button class="abtn" onclick="showToast('Camera opened — scan your plate')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>Take a photo</button>
+      <button class="abtn" onclick="showToast('Photo upload ready')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>Upload image</button>
+    </div>
+    <div class="fgrp">
+      <div class="irow"><div class="iflag">🇰🇼 <span>KW</span></div><input type="text" placeholder="e.g. BWK1234" value="BWK1234"/></div>
+      <div class="ihint">Enter the number as shown on your Registration Certificate</div>
+    </div>
+    <button class="bp" style="background:#c05d00" onclick="show('bike-p')">Fetch Details <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <span class="link-t" onclick="showToast('Manual entry form opened below')">Enter bike details manually →</span>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  BIKE – CHOOSE PLAN  ████████████████ -->
+<div class="scr" id="bike-p">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('bike-v')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Choose Plan</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">2</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">3</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="pill"><span style="font-size:20px">🛵</span><div><strong>Honda Activa 2022 – BWK1234</strong><span>Scooter · 125cc · Red · Auto-filled ✓</span></div></div>
+  <div class="card" style="padding:18px 0 18px">
+    <div class="card-t" style="padding:0 18px">Select Your Coverage</div>
+    <div class="card-s" style="padding:0 18px">No login needed to compare plans</div>
+    <div style="padding:0 14px">
+      <div class="plan-c" id="bp-tp" onclick="selectPlan('bp','tp')">
+        <div class="radio-c"></div>
+        <div class="plan-img" style="background:linear-gradient(135deg,#2d1a0e,#c05d0018)"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="rgba(255,200,100,0.6)" stroke-width="1.5"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6h-5l-2 5 5 2 2-7zM15 6l2 5"/></svg></div>
+        <div class="plan-body"><div class="plan-hrow"><div class="plan-nm">Third Party</div><div class="plan-pr">KWD 23<span>/yr</span></div></div><div class="plan-d">Mandatory minimum. Covers damage to others' property. Fast & affordable.</div><div style="font-size:10px;color:var(--mut);margin-top:4px">Incl. service fee & 5% VAT</div></div>
+      </div>
+      <div class="plan-c sel" id="bp-comp" onclick="selectPlan('bp','comp')">
+        <div class="plan-badge">Best Value</div><div class="radio-c"></div>
+        <div class="plan-img" style="background:linear-gradient(135deg,#1a2d0e,#2ed88e22)"><svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="rgba(100,220,150,0.6)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="plan-body"><div class="plan-hrow"><div class="plan-nm">Comprehensive</div><div class="plan-pr">KWD 46<span>/yr</span></div></div><div class="plan-d">Own damage + theft + fire + third party. Full peace of mind for your bike.</div><div style="font-size:10px;color:var(--mut);margin-top:4px">Incl. service fee & 5% VAT</div></div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(0,0,0,.07);margin-top:4px">
+      <div class="addon-hdr" onclick="toggleAddon('ba')"><span>Recommended Add-ons</span><span class="addon-arr" id="ba-arr">›</span></div>
+      <div class="addon-bd" id="ba-bd">
+        <div class="addon-row"><input type="checkbox"/><div><div class="addon-nm">Roadside Assistance</div><div class="addon-tip">24/7 towing & emergency help anywhere in Kuwait</div></div></div>
+        <div class="addon-row"><input type="checkbox"/><div><div class="addon-nm">Helmet & Accessories Cover</div><div class="addon-tip">Covers your gear if stolen or damaged in an accident</div></div></div>
+      </div>
+    </div>
+    <div style="padding:14px 14px 0">
+      <button class="bp" onclick="show('bike-login')">Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+      <button class="bp out" style="margin-top:10px" onclick="show('bike-v')">← Back</button>
+    </div>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- BIKE LOGIN + OTP + DETAILS + REVIEW + SUCCESS (condensed) -->
+<div class="scr" id="bike-login">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('bike-p')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Almost there</h2></div>
+  <div class="login-wrap">
+    <div class="login-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="login-t">Sign in to buy your<br/>two-wheeler policy</div>
+    <div class="login-s">Your plan is saved. Quick OTP login to complete your purchase.</div>
+    <div class="fgrp" style="width:100%"><div class="flbl">Mobile Number</div><div class="irow"><div class="iflag">🇰🇼 <span>+965</span></div><input type="tel" placeholder="XXXX XXXX" value="9876 5432"/></div></div>
+    <button class="bp" style="width:100%;margin-bottom:10px" onclick="show('bike-otp')">Send OTP <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <div style="text-align:center;font-size:12px;color:var(--mut);margin-top:8px">By continuing, you agree to our <span style="color:var(--dg);text-decoration:underline;cursor:pointer">Terms & Privacy Policy</span></div>
+  </div>
+</div>
+
+<!-- ████████████████  BIKE – OTP VERIFY  ████████████████ -->
+<div class="scr" id="bike-otp">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('bike-login')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Verify OTP</h2></div>
+  <div class="login-wrap">
+    <div class="login-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+    <div class="login-t">Enter OTP</div>
+    <div class="login-s">We sent a 6-digit code to <strong>+965 9876 5432</strong>. It expires in 5 minutes.</div>
+    <div class="otp-row"><input maxlength="1" value="4"/><input maxlength="1" value="2"/><input maxlength="1" value="7"/><input maxlength="1" value="8"/><input maxlength="1" value="3"/><input maxlength="1" value="1"/></div>
+    <button class="bp" style="width:100%;margin-bottom:12px" onclick="show('bike-d')">Verify & Continue</button>
+    <span class="link-t" style="margin-top:0">Resend code in 0:45</span>
+  </div>
+</div>
+
+<div class="scr" id="bike-d">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('bike-login')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Personal Details</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">3</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="card">
+    <div class="card-t">Personal Details</div><div class="card-s">Almost done — just a few details needed.</div>
+    <div class="fgrp"><label class="flbl">Full Name</label><input class="isolo" type="text" value="Ahmad Al-Rashidi"/></div>
+    <div class="fgrp"><label class="flbl">Civil ID Number</label><input class="isolo" type="text" value="285121003456"/></div>
+    <div class="fgrp"><label class="flbl">Email Address</label><input class="isolo" type="email" value="ahmad@email.com"/></div>
+    <div class="fgrp"><label class="flbl">Date of Birth</label><input class="isolo" type="date" value="1985-06-15"/></div>
+    <button class="bp" onclick="show('bike-r')">Review Policy <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <button class="bp out" style="margin-top:10px" onclick="show('bike-p')">← Back</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="bike-r">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('bike-d')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Review Policy</h2></div>
+  <div class="pbar"><div class="steps">
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Vehicle<br/>Details</div></div>
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Choose<br/>Plan</div></div>
+    <div class="stp dn"><div class="stpline"></div><div class="stpdot">✓</div><div class="stplbl">Personal<br/>Details</div></div>
+    <div class="stp act"><div class="stpline"></div><div class="stpdot">4</div><div class="stplbl">Review</div></div>
+  </div></div>
+  <div class="card">
+    <div class="card-t">Review Your Policy</div><div class="card-s">Check everything before you pay</div>
+    <div class="rsec"><div class="rhd">Vehicle</div>
+      <div class="rrow"><span class="rl">Make & Model</span><span class="rv">Honda Activa 2022</span></div>
+      <div class="rrow"><span class="rl">Registration</span><span class="rv">BWK1234</span></div>
+      <div class="rrow"><span class="rl">Type</span><span class="rv">Scooter · 125cc</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Plan</div>
+      <div class="rrow"><span class="rl">Plan</span><span class="rv" style="color:var(--dg)">Comprehensive</span></div>
+      <div class="rrow"><span class="rl">Coverage</span><span class="rv">Own Damage + Third Party</span></div>
+      <div class="rrow"><span class="rl">Valid</span><span class="rv">25 Mar 2026 – 25 Mar 2027</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Payment</div>
+      <div class="rrow"><span class="rl">Base Premium</span><span class="rv">KWD 44.000</span></div>
+      <div class="rrow"><span class="rl">VAT (5%)</span><span class="rv">KWD 2.200</span></div>
+    </div>
+    <div class="total-b"><span class="total-l">Total</span><span class="total-v">KWD 46.200</span></div>
+    <button class="bp gr" onclick="show('bike-done')"><svg width="18" height="18" viewBox="0 0 24 24" fill="#16303d"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>Pay KWD 46.200</button>
+    <button class="bp out" style="margin-top:10px" onclick="show('bike-d')">← Edit Details</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="bike-done">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><div style="width:32px"></div><h2>Policy Issued</h2></div>
+  <div class="suc-wrap">
+    <div class="suc-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+    <div class="suc-t">You're Covered! 🛵</div>
+    <div class="suc-s">Your two-wheeler policy is active from today.</div>
+    <div class="pol-card">
+      <div class="pol-label">Policy Number</div><div class="pol-num">AZN-2026-KW-78500</div>
+      <div class="pol-grid">
+        <div><div class="pol-itl">Vehicle</div><div class="pol-itv">Honda Activa</div></div>
+        <div><div class="pol-itl">Reg No.</div><div class="pol-itv">BWK1234</div></div>
+        <div><div class="pol-itl">Plan</div><div class="pol-itv">Comprehensive</div></div>
+        <div><div class="pol-itl">Valid Until</div><div class="pol-itv">25 Mar 2027</div></div>
+      </div>
+    </div>
+    <button class="bp" style="width:100%;margin-bottom:10px" onclick="showToast('Policy PDF downloading… check your downloads')"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Download Policy PDF</button>
+    <button class="bp out" style="width:100%" onclick="switchTab('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- ████████████████  RENEWAL FLOW  ████████████████ -->
+<div class="scr" id="ren-1">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Renew Policy</h2></div>
+  <div style="padding:16px 14px 4px"><div style="background:var(--gl);border:1.5px solid var(--green);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="font-size:20px">⏰</span><div><div style="font-size:13px;font-weight:700;color:var(--dg)">Policy expires in 12 days</div><div style="font-size:11px;color:var(--sub)">KNH5789 · Toyota Camry · AZN-2025-KW-78432</div></div></div></div>
+  <div class="card">
+    <div class="card-t">Find Your Policy</div>
+    <div class="card-s">Enter your plate number or existing policy number</div>
+    <div class="fgrp"><label class="flbl">Plate Number or Policy No.</label>
+      <div class="irow"><div class="iflag">🇰🇼 <span>KW</span></div><input type="text" placeholder="KNH5789 or AZN-2025-..." value="KNH5789"/></div>
+    </div>
+    <button class="bp" onclick="show('ren-2')">Find My Policy <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <div style="margin-top:14px;padding:12px;background:var(--bg);border-radius:12px;font-size:12px;color:var(--sub);line-height:1.5">💡 Logged in? Your policies appear automatically in <span style="color:var(--dg);font-weight:600;cursor:pointer" onclick="switchTab('my-policies')">My Policies</span></div>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="ren-2">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('ren-1')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Your Current Policy</h2></div>
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div><div style="font-size:15px;font-weight:700;color:var(--txt)">Toyota Camry 2021</div><div style="font-size:12px;color:var(--sub)">KNH5789 · AZN-2025-KW-78432</div></div>
+      <span class="tag am">Expires 6 Apr</span>
+    </div>
+    <div class="rsec">
+      <div class="rrow"><span class="rl">Current Plan</span><span class="rv">Comprehensive</span></div>
+      <div class="rrow"><span class="rl">Premium Paid</span><span class="rv">KWD 140.000</span></div>
+      <div class="rrow"><span class="rl">Valid Until</span><span class="rv">6 Apr 2026</span></div>
+    </div>
+    <div style="background:#fff8e6;border:1px solid #f59e0b;border-radius:12px;padding:12px 14px;margin:12px 0">
+      <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:6px">📋 What's changed this year</div>
+      <div style="font-size:12px;color:#92400e;line-height:1.6">• Third-party liability limit raised to KWD 100,000<br/>• Free windshield cover added to Comprehensive<br/>• Premium increased by KWD 5 due to updated rates</div>
+    </div>
+    <button class="bp" onclick="show('ren-3')">Choose Renewal Plan <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="ren-3">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('ren-2')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Renew – Choose Plan</h2></div>
+  <div class="card" style="padding:18px 0 18px">
+    <div class="card-t" style="padding:0 18px">Renew or Upgrade?</div>
+    <div class="card-s" style="padding:0 18px">Your details are pre-filled. Just confirm your plan.</div>
+    <div style="padding:0 14px">
+      <div class="plan-c sel" id="rp-same" onclick="selectPlan('rp','same')">
+        <div class="plan-badge">Current Plan</div><div class="radio-c"></div>
+        <div class="plan-body" style="padding-top:24px">
+          <div class="plan-hrow"><div class="plan-nm">Comprehensive</div><div class="plan-pr">KWD 147<span>/yr</span></div></div>
+          <div class="plan-d">Same coverage as last year. Renew in one tap with your saved details.</div>
+        </div>
+      </div>
+      <div class="plan-c" id="rp-prem" onclick="selectPlan('rp','prem')">
+        <div class="radio-c"></div>
+        <div class="plan-body">
+          <div class="plan-hrow"><div class="plan-nm">Comprehensive+</div><div class="plan-pr">KWD 185<span>/yr</span></div></div>
+          <div class="plan-d">Upgrade with Zero Depreciation, engine protection & NCB shield.</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:14px 14px 0">
+      <button class="bp" onclick="show('ren-confirm')">Review & Pay <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+      <div style="font-size:11px;color:var(--mut);text-align:center;margin-top:8px">Your details are pre-filled from last year's policy</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  RENEWAL – CONFIRM PAYMENT  ████████████████ -->
+<div class="scr" id="ren-confirm">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('ren-3')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Confirm Renewal</h2></div>
+  <div class="card">
+    <div class="card-t">Review & Confirm</div><div class="card-s">Your details are pre-filled from last year</div>
+    <div class="rsec"><div class="rhd">Vehicle</div>
+      <div class="rrow"><span class="rl">Make & Model</span><span class="rv">Toyota Camry 2021</span></div>
+      <div class="rrow"><span class="rl">Plate Number</span><span class="rv">KNH5789</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Renewal Plan</div>
+      <div class="rrow"><span class="rl">Plan</span><span class="rv" style="color:var(--dg)">Comprehensive</span></div>
+      <div class="rrow"><span class="rl">New Start Date</span><span class="rv">7 Apr 2026</span></div>
+      <div class="rrow"><span class="rl">Valid Until</span><span class="rv">7 Apr 2027</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Policyholder</div>
+      <div class="rrow"><span class="rl">Name</span><span class="rv">Ahmad Al-Rashidi</span></div>
+      <div class="rrow"><span class="rl">Mobile</span><span class="rv">+965 9876 5432</span></div>
+    </div>
+    <div class="div"></div>
+    <div class="rsec"><div class="rhd">Payment</div>
+      <div class="rrow"><span class="rl">Plan Premium</span><span class="rv">KWD 130.000</span></div>
+      <div class="rrow"><span class="rl">Service Fee</span><span class="rv">KWD 10.000</span></div>
+      <div class="rrow"><span class="rl">VAT (5%)</span><span class="rv">KWD 7.000</span></div>
+    </div>
+    <div class="total-b"><span class="total-l">Total</span><span class="total-v">KWD 147.000</span></div>
+    <button class="bp gr" onclick="show('ren-done')"><svg width="18" height="18" viewBox="0 0 24 24" fill="#16303d"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>Pay KWD 147.000 — Renew Now</button>
+    <button class="bp out" style="margin-top:10px" onclick="show('ren-3')">← Change Plan</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="ren-done">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><div style="width:32px"></div><h2>Renewed!</h2></div>
+  <div class="suc-wrap">
+    <div class="suc-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2.5" stroke-linecap="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>
+    <div class="suc-t">Policy Renewed! ✅</div>
+    <div class="suc-s">Your car is covered for another year. New policy starts 7 Apr 2026.</div>
+    <div class="pol-card">
+      <div class="pol-label">Renewed Policy Number</div><div class="pol-num">AZN-2026-KW-78432</div>
+      <div class="pol-grid">
+        <div><div class="pol-itl">Vehicle</div><div class="pol-itv">Toyota Camry</div></div>
+        <div><div class="pol-itl">Plate</div><div class="pol-itv">KNH5789</div></div>
+        <div><div class="pol-itl">Plan</div><div class="pol-itv">Comprehensive</div></div>
+        <div><div class="pol-itl">Valid Until</div><div class="pol-itv">7 Apr 2027</div></div>
+      </div>
+    </div>
+    <button class="bp" style="width:100%;margin-bottom:10px" onclick="showToast('Policy PDF downloading… check your downloads')"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>Download New Policy PDF</button>
+    <button class="bp out" style="width:100%" onclick="switchTab('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- ████████████████  CLAIMS FLOW  ████████████████ -->
+<div class="scr" id="claim-1">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>File a Claim</h2></div>
+  <div style="padding:14px 14px 4px"><div style="background:#fff3e8;border:1.5px solid #f59e0b;border-radius:14px;padding:14px 16px;font-size:12px;color:#92400e;line-height:1.6"><strong>⚡ Quick tip:</strong> The more photos you add now, the faster your claim gets approved. Aim for 3–5 clear shots.</div></div>
+  <div class="card">
+    <div class="card-t">Select Your Policy</div>
+    <div class="card-s">Which vehicle are you claiming for?</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+      <div style="border:2px solid var(--green);border-radius:14px;padding:14px 16px;cursor:pointer;background:var(--gl);display:flex;align-items:center;gap:12px">
+        <div style="font-size:22px">🚗</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:700;color:var(--dg)">Toyota Camry 2021</div><div style="font-size:11px;color:var(--sub)">KNH5789 · Comprehensive · Active</div></div>
+        <div style="width:18px;height:18px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      </div>
+      <div style="border:1.5px solid var(--dis);border-radius:14px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px">
+        <div style="font-size:22px">🛵</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Honda Activa 2022</div><div style="font-size:11px;color:var(--sub)">BWK1234 · Comprehensive · Active</div></div>
+      </div>
+    </div>
+    <button class="bp" onclick="show('claim-2')">Continue with Toyota Camry <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="claim-2">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('claim-1')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Incident Details</h2></div>
+  <div class="card">
+    <div class="card-t">What happened?</div>
+    <div class="card-s">Plain language is fine — no legal jargon needed</div>
+    <div class="fgrp"><label class="flbl">Type of Incident</label>
+      <div class="irow"><select style="flex:1;border:none;outline:none;font-family:'Poppins',sans-serif;font-size:14px;color:var(--txt);background:#f8f9fa;padding:0 12px;height:48px">
+        <option>Collision / Accident</option>
+        <option>Theft or Vandalism</option>
+        <option>Natural Damage (flood/fire)</option>
+        <option>Windshield / Glass</option>
+        <option>Third Party Claim</option>
+      </select></div>
+    </div>
+    <div class="fgrp"><label class="flbl">Date of Incident</label><input class="isolo" type="date" value="2026-03-24"/></div>
+    <div class="fgrp"><label class="flbl">Location</label><input class="isolo" type="text" placeholder="e.g. Salmiya, Block 12" value="Salmiya, Block 12"/></div>
+    <div class="fgrp"><label class="flbl">Describe what happened</label><textarea class="isolo" placeholder="Briefly describe the incident…">Minor collision at a roundabout. Front bumper and left headlight damaged. No injuries. Police report obtained.</textarea></div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><input type="checkbox" checked style="accent-color:var(--dg)"/><label style="font-size:12px;color:var(--sub)">Police report has been filed (recommended for collision claims)</label></div>
+    <button class="bp" onclick="show('claim-3')">Next: Upload Photos <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <button class="bp out" style="margin-top:10px" onclick="show('claim-1')">← Back</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="claim-3">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('claim-2')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Upload Evidence</h2></div>
+  <div class="card">
+    <div class="card-t">Add Photos</div>
+    <div class="card-s">3–5 clear photos speeds up approval significantly</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+      <div style="aspect-ratio:1;border-radius:12px;overflow:hidden;background:#1a3f52;display:flex;align-items:center;justify-content:center;position:relative">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <div style="position:absolute;bottom:6px;right:6px;background:var(--green);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      </div>
+      <div style="aspect-ratio:1;border-radius:12px;overflow:hidden;background:#1e4a5e;display:flex;align-items:center;justify-content:center;position:relative">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <div style="position:absolute;bottom:6px;right:6px;background:var(--green);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+      </div>
+      <div style="aspect-ratio:1;border-radius:12px;border:2px dashed var(--bd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer" onclick="simulatePhotoUpload(this)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bd)" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span style="font-size:11px;color:var(--mut)">Add photo</span>
+      </div>
+      <div style="aspect-ratio:1;border-radius:12px;border:2px dashed var(--bd);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer" onclick="simulatePhotoUpload(this)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bd)" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span style="font-size:11px;color:var(--mut)">Add photo</span>
+      </div>
+    </div>
+    <div style="background:var(--bg);border-radius:12px;padding:12px 14px;margin-bottom:14px">
+      <div style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:6px">📎 Documents (optional but helpful)</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px"><input type="checkbox" checked style="accent-color:var(--dg)"/><span style="font-size:12px;color:var(--sub)">Police Report (uploaded ✓)</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><input type="checkbox" style="accent-color:var(--dg)"/><span style="font-size:12px;color:var(--sub)">Repair Estimate</span></div>
+        <div style="display:flex;align-items:center;gap:8px"><input type="checkbox" style="accent-color:var(--dg)"/><span style="font-size:12px;color:var(--sub)">Other Document</span></div>
+      </div>
+    </div>
+    <button class="bp" onclick="show('claim-done')">Submit Claim <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+    <button class="bp out" style="margin-top:10px" onclick="show('claim-2')">← Back</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<div class="scr" id="claim-done">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><div style="width:32px"></div><h2>Claim Submitted</h2></div>
+  <div class="suc-wrap" style="padding-top:24px">
+    <div class="suc-icon"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+    <div class="suc-t">Claim Filed! 📋</div>
+    <div class="suc-s" style="margin-bottom:14px">Claim ID <strong>#CLM-2026-4872</strong>. We're reviewing your photos now. You'll hear from us within 2 hours.</div>
+    <div style="background:#fff;border-radius:18px;padding:18px;width:100%;margin-bottom:14px;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+      <div style="font-size:13px;font-weight:700;color:var(--txt);margin-bottom:16px">Live Claim Status</div>
+      <div class="tracker">
+        <div class="track-row"><div class="track-dot-wrap"><div class="track-dot dn">✓</div><div class="track-vline dn"></div></div><div class="track-info"><div class="track-nm">Claim Submitted</div><div class="track-sub">25 Mar 2026, 11:42 AM</div></div></div>
+        <div class="track-row"><div class="track-dot-wrap"><div class="track-dot act">2</div><div class="track-vline"></div></div><div class="track-info"><div class="track-nm">Under Review</div><div class="track-sub">Surveyor assigned · Est. 2 hrs</div></div></div>
+        <div class="track-row"><div class="track-dot-wrap"><div class="track-dot">3</div><div class="track-vline"></div></div><div class="track-info"><div class="track-nm">Approved</div><div class="track-sub">Pending review completion</div></div></div>
+        <div class="track-row"><div class="track-dot-wrap"><div class="track-dot">4</div></div><div class="track-info"><div class="track-nm">Repair at Workshop</div><div class="track-sub">Choose a cashless garage near you</div></div></div>
+      </div>
+    </div>
+    <div style="background:var(--bg);border-radius:12px;padding:12px 14px;width:100%;margin-bottom:16px;text-align:left">
+      <div style="font-size:12px;font-weight:600;color:var(--txt);margin-bottom:4px">What happens next?</div>
+      <div style="font-size:11px;color:var(--sub);line-height:1.6">A surveyor will review your photos and contact you via SMS if anything else is needed. You can track your claim in <strong>My Policies</strong>.</div>
+    </div>
+    <button class="bp" style="width:100%;margin-bottom:10px" onclick="switchTab('my-policies')">Track in My Policies</button>
+    <button class="bp out" style="width:100%" onclick="switchTab('home')">Back to Home</button>
+  </div>
+</div>
+
+<!-- ████████████████  MY POLICIES  ████████████████ -->
+<div class="scr" id="my-policies">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="topnav"><div class="logo"><div class="logob"><svg width="16" height="16" viewBox="0 0 24 24" fill="#16303d"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="logot">INSUR<span>A</span>NCE</div></div><div style="font-size:12px;color:var(--green);font-weight:600">Ahmad Al-R. ✓</div></div>
+  <div style="padding:14px 14px 8px"><h2 style="font-size:19px;font-weight:800;color:var(--txt)">My Policies</h2><p style="font-size:13px;color:var(--sub);margin-top:3px">2 active · 1 claim in progress</p></div>
+  <div class="chip-tabs">
+    <div class="chip act" onclick="filterPolicies('active',this)">Active</div>
+    <div class="chip" onclick="filterPolicies('claims',this)">Claims</div>
+    <div class="chip" onclick="filterPolicies('expired',this)">Expired</div>
+  </div>
+
+  <!-- Policy 1 -->
+  <div class="pol-section" data-polcat="active" style="background:#fff;border-radius:18px;margin:0 14px 12px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden">
+    <div style="background:linear-gradient(135deg,var(--dg),#1e4a5e);padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🚗</span><div><div style="font-size:14px;font-weight:700;color:#fff">Toyota Camry 2021</div><div style="font-size:11px;color:rgba(255,255,255,.65)">KNH5789 · Comprehensive</div></div></div>
+      <span class="tag gr" style="font-size:10px">Active</span>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+        <div><div style="font-size:10px;color:var(--sub)">Policy No.</div><div style="font-size:12px;font-weight:600;color:var(--txt)">AZN-2026-KW-78432</div></div>
+        <div><div style="font-size:10px;color:var(--sub)">Expires</div><div style="font-size:12px;font-weight:600;color:var(--txt)">25 Mar 2027</div></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button style="flex:1;background:var(--dg);color:#fff;border:none;border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif" onclick="show('claim-1')">File Claim</button>
+        <button style="flex:1;background:var(--gl);color:var(--dg);border:1.5px solid var(--green);border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif" onclick="show('ren-2')">Renew</button>
+        <button style="flex:1;background:var(--bg);color:var(--sub);border:1.5px solid var(--dis);border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif" onclick="showToast('Policy PDF downloading…')">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Policy 2 -->
+  <div class="pol-section" data-polcat="active" style="background:#fff;border-radius:18px;margin:0 14px 12px;box-shadow:0 1px 4px rgba(0,0,0,.06);overflow:hidden">
+    <div style="background:linear-gradient(135deg,#2d1a0e,#5a2e00);padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🛵</span><div><div style="font-size:14px;font-weight:700;color:#fff">Honda Activa 2022</div><div style="font-size:11px;color:rgba(255,255,255,.65)">BWK1234 · Comprehensive</div></div></div>
+      <span class="tag gr" style="font-size:10px">Active</span>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+        <div><div style="font-size:10px;color:var(--sub)">Policy No.</div><div style="font-size:12px;font-weight:600;color:var(--txt)">AZN-2026-KW-78500</div></div>
+        <div><div style="font-size:10px;color:var(--sub)">Expires</div><div style="font-size:12px;font-weight:600;color:var(--txt)">25 Mar 2027</div></div>
+      </div>
+      <div style="background:#fff3e8;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:#92400e;display:flex;align-items:center;gap:6px"><span>⏰</span> Expires in 12 days — <span style="font-weight:600;cursor:pointer;text-decoration:underline" onclick="show('ren-1')">Renew now</span></div>
+      <div style="display:flex;gap:8px">
+        <button style="flex:1;background:var(--dg);color:#fff;border:none;border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif" onclick="show('claim-1')">File Claim</button>
+        <button style="flex:1;background:var(--gl);color:var(--dg);border:1.5px solid var(--green);border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif" onclick="show('ren-1')">Renew</button>
+        <button style="flex:1;background:var(--bg);color:var(--sub);border:1.5px solid var(--dis);border-radius:10px;padding:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif" onclick="showToast('Policy PDF downloading…')">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Claim banner -->
+  <div class="pol-section" data-polcat="claims" style="margin:0 14px 14px;background:#fef3c7;border:1.5px solid #f59e0b;border-radius:14px;padding:14px 16px;cursor:pointer" onclick="show('claim-done')">
+    <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:4px">🔧 Claim in Progress</div>
+    <div style="font-size:11px;color:#92400e">CLM-2026-4872 · Toyota Camry · Under Review</div>
+    <div style="font-size:11px;font-weight:600;color:#92400e;margin-top:6px;text-decoration:underline">View claim status →</div>
+  </div>
+
+  <!-- Expired empty state -->
+  <div class="pol-section" data-polcat="expired" style="display:none;margin:0 14px 14px;background:#fff;border-radius:18px;padding:28px 20px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.06)">
+    <div style="font-size:32px;margin-bottom:10px">📂</div>
+    <div style="font-size:15px;font-weight:700;color:var(--txt);margin-bottom:6px">No expired policies</div>
+    <div style="font-size:12px;color:var(--sub);line-height:1.5">Your past policies will appear here once they expire.</div>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="bnav">
+    <div class="bni" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></div>
+    <div class="bni" onclick="switchTab('products')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.99 16.81 1.5 15 1.5c-1 0-2 .5-2.6 1.3L12 3.67l-.4-.87C10.99 2 10 1.5 9 1.5 7.19 1.5 6 2.99 6 4.65c0 .47.11.91.18 1.35H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5-2.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35-1.27-1.16-2.32-2.4-2.32-3.35 0-.48.67-1.15 1.5-1.15h1.64zM9 3.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35C6.91 6.84 5.87 5.6 5.87 4.65c0-.48.67-1.15 1.5-1.15H9zM4 19V8h5.54c.3.35.62.67.93.98.96.96 1.9 1.8 1.9 1.8l.63.57.63-.57s.94-.84 1.9-1.8c.31-.31.63-.63.93-.98H20v11H4z"/></svg><span>Products</span></div>
+    <div class="bni act" onclick="switchTab('my-policies')"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg><span>My Policies</span></div>
+    <div class="bni" onclick="switchTab('profile')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg><span>Profile</span></div>
+  </div>
+</div>
+
+<!-- ████████████████  PROFILE  ████████████████ -->
+<div class="scr" id="profile">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div style="background:var(--dg);padding:14px 20px 28px;flex-shrink:0;position:relative">
+    <button onclick="show('profile-edit')" style="position:absolute;top:14px;right:20px;background:rgba(255,255,255,.15);border:none;border-radius:8px;padding:6px 12px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif">Edit</button>
+    <div class="avatar" style="cursor:pointer" onclick="show('profile-edit')">A</div>
+    <div class="profile-nm" style="color:#fff">Ahmad Al-Rashidi</div>
+    <div class="profile-sub" style="color:rgba(255,255,255,.6)">+965 9876 5432 · ahmad@email.com</div>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:12px">
+      <span class="tag gr" style="font-size:10px">2 Active Policies</span>
+      <span class="tag" style="background:rgba(255,255,255,.12);color:#fff;font-size:10px">Kuwait · Civil ID Verified ✓</span>
+    </div>
+  </div>
+  <div class="card" style="margin-top:-18px">
+    <div style="padding:0">
+      <div class="menu-row" onclick="switchTab('my-policies')" style="cursor:pointer">
+        <div class="menu-icon" style="background:#e8f4ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e6fa8" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <span class="menu-nm">My Policies</span><span class="menu-arr">›</span>
+      </div>
+      <div class="menu-row" onclick="show('claim-done')" style="cursor:pointer">
+        <div class="menu-icon" style="background:#fff3e8"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c05d00" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <span class="menu-nm">Claim History</span><span class="menu-arr">›</span>
+      </div>
+      <div class="menu-row" onclick="show('profile-payment')" style="cursor:pointer">
+        <div class="menu-icon" style="background:#e8fff4"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1a7a4e" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <span class="menu-nm">Payment Methods</span><span class="menu-arr">›</span>
+      </div>
+      <div class="menu-row" onclick="show('profile-notifications')" style="cursor:pointer" style="border-bottom:none">
+        <div class="menu-icon" style="background:#f3f0ff"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></div>
+        <span class="menu-nm">Notifications</span>
+        <span style="font-size:11px;background:#7c3aed;color:#fff;border-radius:999px;padding:2px 7px;font-weight:600;margin-right:6px">3 on</span>
+        <span class="menu-arr">›</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;font-weight:700;color:var(--txt);margin-bottom:12px">Quick Toggles</div>
+    <div class="toggle-wrap" style="cursor:pointer" onclick="toggleSwitch('tog-wa',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">WhatsApp Renewal Reminders</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Get reminded 30, 14 & 3 days before expiry</div></div>
+      <div class="toggle tog-on" id="tog-wa"></div>
+    </div>
+    <div class="toggle-wrap" style="cursor:pointer" onclick="toggleSwitch('tog-cl',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Claim Status Updates</div><div style="font-size:11px;color:var(--sub);margin-top:2px">SMS & app notifications on claim progress</div></div>
+      <div class="toggle tog-on" id="tog-cl"></div>
+    </div>
+    <div class="toggle-wrap" style="border-bottom:none;cursor:pointer" onclick="toggleSwitch('tog-in',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Inspection Reminders</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Annual vehicle inspection due date alerts</div></div>
+      <div class="toggle tog-off" id="tog-in"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="menu-row" style="border-bottom:none;padding:0;cursor:pointer" onclick="showLogoutModal()">
+      <div class="menu-icon" style="background:#ffeaea"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg></div>
+      <span class="menu-nm" style="color:var(--red)">Log Out</span>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="bnav">
+    <div class="bni" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></div>
+    <div class="bni" onclick="switchTab('products')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.99 16.81 1.5 15 1.5c-1 0-2 .5-2.6 1.3L12 3.67l-.4-.87C10.99 2 10 1.5 9 1.5 7.19 1.5 6 2.99 6 4.65c0 .47.11.91.18 1.35H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-5-2.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35-1.27-1.16-2.32-2.4-2.32-3.35 0-.48.67-1.15 1.5-1.15h1.64zM9 3.5c.83 0 1.5.67 1.5 1.15 0 .95-1.04 2.19-2.32 3.35C6.91 6.84 5.87 5.6 5.87 4.65c0-.48.67-1.15 1.5-1.15H9zM4 19V8h5.54c.3.35.62.67.93.98.96.96 1.9 1.8 1.9 1.8l.63.57.63-.57s.94-.84 1.9-1.8c.31-.31.63-.63.93-.98H20v11H4z"/></svg><span>Products</span></div>
+    <div class="bni" onclick="switchTab('my-policies')"><svg viewBox="0 0 24 24" fill="var(--mut)"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8z"/></svg><span>My Policies</span></div>
+    <div class="bni act" onclick="switchTab('profile')"><svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg><span>Profile</span></div>
+  </div>
+</div>
+
+<!-- ████████████████  PROFILE – EDIT  ████████████████ -->
+<div class="scr" id="profile-edit">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="switchTab('profile')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Edit Profile</h2></div>
+  <div style="display:flex;flex-direction:column;align-items:center;padding:20px 0 4px;background:var(--dg)">
+    <div class="avatar" style="width:80px;height:80px;font-size:30px;position:relative">A
+      <div style="position:absolute;bottom:0;right:0;width:24px;height:24px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--dg)"><svg width="12" height="12" viewBox="0 0 24 24" fill="#16303d"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div>
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.6);margin-top:8px;margin-bottom:16px">Tap to change photo</div>
+  </div>
+  <div class="card">
+    <div class="fgrp"><label class="flbl">Full Name</label><input class="isolo" type="text" value="Ahmad Al-Rashidi"/></div>
+    <div class="fgrp"><label class="flbl">Email Address</label><input class="isolo" type="email" value="ahmad@email.com"/></div>
+    <div class="fgrp"><label class="flbl">Mobile Number</label><div class="irow"><div class="iflag">🇰🇼 <span>+965</span></div><input type="tel" value="9876 5432"/></div></div>
+    <div class="fgrp"><label class="flbl">Date of Birth</label><input class="isolo" type="date" value="1985-06-15"/></div>
+    <div class="fgrp"><label class="flbl">Civil ID</label><input class="isolo" type="text" value="285121003456" disabled style="background:var(--bg);color:var(--mut)"/><div class="ihint">Civil ID cannot be changed. Contact support if there's an error.</div></div>
+    <button class="bp" onclick="showToast('Profile saved successfully ✓');switchTab('profile')">Save Changes</button>
+    <button class="bp out" style="margin-top:10px" onclick="switchTab('profile')">Cancel</button>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  PROFILE – PAYMENT METHODS  ████████████████ -->
+<div class="scr" id="profile-payment">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="switchTab('profile')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Payment Methods</h2></div>
+  <div style="padding:14px 14px 4px"><p style="font-size:13px;color:var(--sub)">Saved cards are used at checkout for faster payment.</p></div>
+  <div class="card">
+    <div style="background:linear-gradient(135deg,#1a3f52,#2ed88e33);border-radius:16px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-16px;top:-16px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.07)"></div>
+      <div style="position:absolute;right:10px;bottom:-20px;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.05)"></div>
+      <div style="font-size:10px;color:rgba(255,255,255,.5);margin-bottom:12px;letter-spacing:1px">KNET · DEBIT</div>
+      <div style="font-size:18px;font-weight:700;color:#fff;letter-spacing:3px;margin-bottom:14px">•••• •••• •••• 4821</div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end">
+        <div><div style="font-size:10px;color:rgba(255,255,255,.5)">CARD HOLDER</div><div style="font-size:13px;font-weight:600;color:#fff">Ahmad Al-Rashidi</div></div>
+        <div><div style="font-size:10px;color:rgba(255,255,255,.5)">EXPIRES</div><div style="font-size:13px;font-weight:600;color:#fff">09/28</div></div>
+        <span class="tag gr" style="font-size:10px">Default</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:4px">
+      <button class="bp out" style="flex:1;margin-top:0;font-size:12px;padding:10px">Remove</button>
+      <button class="bp" style="flex:1;margin-top:0;font-size:12px;padding:10px" onclick="showToast('Already set as default ✓')">Set Default</button>
+    </div>
+  </div>
+  <div class="card" style="border:2px dashed var(--dis);background:transparent;box-shadow:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;padding:20px" onclick="showToast('Card addition coming soon')">
+    <div style="width:36px;height:36px;border-radius:50%;background:var(--gl);display:flex;align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dg)" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+    <span style="font-size:14px;font-weight:600;color:var(--dg)">Add New Card</span>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  PROFILE – NOTIFICATIONS  ████████████████ -->
+<div class="scr" id="profile-notifications">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="switchTab('profile')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Notifications</h2></div>
+  <div style="padding:14px 14px 4px"><p style="font-size:13px;color:var(--sub)">Manage how and when Azentio contacts you.</p></div>
+  <div class="card">
+    <div style="font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">Renewal & Policy</div>
+    <div class="toggle-wrap" style="cursor:pointer" onclick="toggleSwitch('tog-wa2',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">WhatsApp Renewal Reminders</div><div style="font-size:11px;color:var(--sub);margin-top:2px">30, 14 & 3 days before expiry</div></div>
+      <div class="toggle tog-on" id="tog-wa2"></div>
+    </div>
+    <div class="toggle-wrap" style="cursor:pointer;border-bottom:none" onclick="toggleSwitch('tog-pol',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Policy Updates</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Changes to coverage or premium</div></div>
+      <div class="toggle tog-on" id="tog-pol"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">Claims</div>
+    <div class="toggle-wrap" style="cursor:pointer" onclick="toggleSwitch('tog-cl2',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Claim Status Updates</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Every time your claim status changes</div></div>
+      <div class="toggle tog-on" id="tog-cl2"></div>
+    </div>
+    <div class="toggle-wrap" style="cursor:pointer;border-bottom:none" onclick="toggleSwitch('tog-sur',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Surveyor Assigned</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Notify when a surveyor reviews your claim</div></div>
+      <div class="toggle tog-on" id="tog-sur"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">Vehicle</div>
+    <div class="toggle-wrap" style="cursor:pointer" onclick="toggleSwitch('tog-in2',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Inspection Reminders</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Annual vehicle inspection due date</div></div>
+      <div class="toggle tog-off" id="tog-in2"></div>
+    </div>
+    <div class="toggle-wrap" style="cursor:pointer;border-bottom:none" onclick="toggleSwitch('tog-promo',this)">
+      <div><div style="font-size:13px;font-weight:500;color:var(--txt)">Offers & Promotions</div><div style="font-size:11px;color:var(--sub);margin-top:2px">Exclusive deals and new product launches</div></div>
+      <div class="toggle tog-off" id="tog-promo"></div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+</div>
+
+<!-- ████████████████  LOGOUT MODAL (overlay)  ████████████████ -->
+<div id="logout-modal" style="display:none;position:fixed;inset:0;z-index:999;display:none;align-items:flex-end;justify-content:center">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px)" onclick="hideLogoutModal()"></div>
+  <div style="position:relative;background:#fff;border-radius:24px 24px 0 0;padding:24px 20px 32px;width:390px;z-index:1000;animation:slideUp .25s ease">
+    <div style="width:36px;height:4px;background:var(--dis);border-radius:2px;margin:0 auto 20px"></div>
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="width:56px;height:56px;background:#ffeaea;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg></div>
+      <div style="font-size:18px;font-weight:700;color:var(--txt);margin-bottom:6px">Log out?</div>
+      <div style="font-size:13px;color:var(--sub);line-height:1.5">You'll need to log back in to view your policies or file a claim. Your data is safe.</div>
+    </div>
+    <button style="width:100%;background:#ef4444;color:#fff;border:none;border-radius:999px;padding:14px;font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:10px" onclick="doLogOut()">Yes, Log Out</button>
+    <button class="bp out" style="width:100%" onclick="hideLogoutModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- TOAST notification -->
+<div id="toast" style="display:none;position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#16303d;color:#fff;padding:10px 20px;border-radius:999px;font-size:13px;font-weight:500;font-family:'Poppins',sans-serif;z-index:1001;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.2)"></div>
+
+<style>
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.toggle.tog-on{background:var(--green)}
+.toggle.tog-on::after{transform:translateX(0)}
+.toggle.tog-off{background:var(--dis)}
+.toggle.tog-off::after{transform:translateX(-18px)}
+.toggle{transition:background .2s}
+.toggle::after{transition:transform .2s}
+.menu-row:active{background:var(--bg);border-radius:12px}
+</style>
+
+<!-- ████████████████  LOGIN (standalone)  ████████████████ -->
+<div class="scr" id="login-standalone">
+  <div class="sb"><span class="t">9:41</span></div>
+  <div class="fhdr"><button onclick="show('home')"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></button><h2>Log In</h2></div>
+  <div class="login-wrap">
+    <div class="login-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ed88e" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="login-t">Welcome back</div>
+    <div class="login-s">Log in to view your policies, track claims, and renew in one tap.</div>
+    <div class="fgrp" style="width:100%"><div class="flbl">Mobile Number</div><div class="irow"><div class="iflag">🇰🇼 <span>+965</span></div><input type="tel" placeholder="XXXX XXXX"/></div></div>
+    <button class="bp" style="width:100%;margin-bottom:12px" onclick="switchTab('my-policies')">Send OTP</button>
+    <div style="text-align:center;font-size:13px;color:var(--sub);margin-bottom:10px">— or —</div>
+    <button class="bp out" style="width:100%" onclick="switchTab('home')">Continue without account</button>
+    <div style="text-align:center;font-size:11px;color:var(--mut);margin-top:14px;line-height:1.5">No account needed to browse plans or check pricing.<br/>You only need to log in at checkout.</div>
+  </div>
+</div>
+
+</div><!-- /phone -->
+<script>
+function show(id){
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const t=document.getElementById(id);
+  if(t){t.classList.add('on');t.scrollTop=0}
+}
+function switchTab(tab){
+  show(tab);
+  // update active bni in all bnavs
+  document.querySelectorAll('.bni').forEach(b=>b.classList.remove('act'));
+  document.querySelectorAll('.bni').forEach(b=>{
+    if(b.onclick&&b.onclick.toString().includes("'"+tab+"'")){b.classList.add('act')}
+  });
+}
+function selectPlan(pfx,p){
+  document.querySelectorAll('.plan-c[id^="'+pfx+'"]').forEach(c=>c.classList.remove('sel'));
+  const el=document.getElementById(pfx+'-'+p);
+  if(el)el.classList.add('sel');
+}
+function toggleAddon(id){
+  const bd=document.getElementById(id+'-bd');
+  const arr=document.getElementById(id+'-arr');
+  if(!bd)return;
+  bd.classList.toggle('open');
+  if(arr)arr.classList.toggle('open');
+}
+function filterProducts(cat,el){
+  // update chip styles
+  document.querySelectorAll('#products .chip').forEach(c=>c.classList.remove('act'));
+  el.classList.add('act');
+  // show/hide product cards
+  document.querySelectorAll('.prod-card-item').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.style.display='';
+    } else {
+      card.style.display='none';
+    }
+  });
+  // show add-ons empty state if needed
+  const ae=document.getElementById('addons-empty');
+  if(ae) ae.style.display=(cat==='addons')?'block':'none';
+}
+function filterPolicies(cat,el){
+  // update chip styles
+  document.querySelectorAll('#my-policies .chip').forEach(c=>c.classList.remove('act'));
+  el.classList.add('act');
+  // show/hide policy sections
+  document.querySelectorAll('.pol-section').forEach(s=>{
+    if(cat==='active'&&s.dataset.polcat==='active') s.style.display='';
+    else if(cat==='claims'&&s.dataset.polcat==='claims') s.style.display='';
+    else if(cat==='expired'&&s.dataset.polcat==='expired') s.style.display='';
+    else if(cat==='active'&&s.dataset.polcat==='claims') s.style.display='none';
+    else if(cat==='active'&&s.dataset.polcat==='expired') s.style.display='none';
+    else if(cat==='claims'&&s.dataset.polcat==='active') s.style.display='none';
+    else if(cat==='claims'&&s.dataset.polcat==='expired') s.style.display='none';
+    else if(cat==='expired'&&s.dataset.polcat==='active') s.style.display='none';
+    else if(cat==='expired'&&s.dataset.polcat==='claims') s.style.display='none';
+  });
+}
+// Make OTP inputs auto-advance
+document.querySelectorAll('.otp-row input').forEach((inp,i,all)=>{
+  inp.addEventListener('input',()=>{if(inp.value.length===1&&all[i+1])all[i+1].focus()});
+  inp.addEventListener('keydown',e=>{if(e.key==='Backspace'&&!inp.value&&all[i-1])all[i-1].focus()});
+});
+// Simulate photo upload in claims
+function simulatePhotoUpload(el){
+  el.style.background='#1a3f52';
+  el.style.border='none';
+  el.style.position='relative';
+  el.innerHTML='<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><div style="position:absolute;bottom:6px;right:6px;background:var(--green);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>';
+  el.onclick=null;
+  showToast('Photo added ✓');
+}
+// Toggle switches
+function toggleSwitch(id, row){
+  const tog=document.getElementById(id);
+  if(!tog)return;
+  const isOn=tog.classList.contains('tog-on');
+  tog.classList.toggle('tog-on',!isOn);
+  tog.classList.toggle('tog-off',isOn);
+  // Ripple flash on the row
+  if(row){row.style.background='var(--gl)';setTimeout(()=>row.style.background='',300);}
+  showToast(isOn?'Turned off':'Turned on ✓');
+}
+// Logout modal
+function showLogoutModal(){
+  const m=document.getElementById('logout-modal');
+  m.style.display='flex';
+}
+function hideLogoutModal(){
+  const m=document.getElementById('logout-modal');
+  m.style.display='none';
+}
+function doLogOut(){
+  hideLogoutModal();
+  showToast('Logged out. See you soon!');
+  setTimeout(()=>show('ob1'),800);
+}
+// Toast
+function showToast(msg){
+  const t=document.getElementById('toast');
+  if(!t)return;
+  t.textContent=msg;
+  t.style.display='block';
+  t.style.animation='fadeIn .2s ease';
+  clearTimeout(window._toastTimer);
+  window._toastTimer=setTimeout(()=>{t.style.display='none';},2200);
+}
+</script>
+</body>
+</html>
